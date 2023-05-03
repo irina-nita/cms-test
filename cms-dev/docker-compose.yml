@@ -1,0 +1,28 @@
+version: "3.3"
+services:
+  db:
+    container_name: db
+    image: postgres
+    environment:
+      POSTGRES_HOST_AUTH_METHOD: trust
+    ports:
+      - '5432:5432'
+    volumes:
+      # It would be nice here to support OSes that don't have /tmp
+      # See: https://github.com/docker/compose/issues/3344
+      - "/tmp/var_lib_postgresql_data:/var/lib/postgresql/data"
+  cms_dev:
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    ports:
+      - 8889:8889
+    depends_on:
+      - "db"
+    environment:
+      CMS_CONFIG: /usr/local/etc/cms.conf
+    privileged: true
+    command: bash
+    stdin_open: true # docker run -i
+    tty: true        # docker run -t
+# psql -h db -p 5432 -U postgres will be very useful!
