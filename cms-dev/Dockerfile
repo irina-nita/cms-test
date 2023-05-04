@@ -45,8 +45,25 @@ RUN sudo python3 setup.py install
 
 RUN sudo python3 prerequisites.py --yes --cmsuser=cmsuser install; exit 0
 
-RUN sudo sed 's/cmsuser:your_password_here@localhost/postgres@db/' ./config/cms.conf.sample \
-    | sudo tee /usr/local/etc/cms-testdb.conf
+RUN sudo chmod +s /usr/local/bin/isolate
+RUN sudo chown root:cmsuser ./isolate/isolate
+RUN sudo chmod u+s ./isolate/isolate
+
+RUN sudo apt install tmux -y
+RUN sudo apt install vim -y
+RUN sudo apt install systemctl -y
+RUN sudo apt install nginx -y
+RUN sudo apt-get install libcgroup-dev -y
+
+COPY ./config/cms.ranking.conf.sample /usr/local/etc/cms.ranking.conf
+COPY ./cmdline.txt /boot/firmware/cmdline.txt
+COPY ./config/cms.conf.docker.sample /usr/local/etc/cms.conf
+COPY ./config/nginx.conf.sample /usr/local/etc/nginx.conf
+COPY ./isolate-check-environment /home/cmsuser/cms/isolate-check-environment
+
+RUN sudo chmod 777 /home/cmsuser/cms/isolate-check-environment
+# RUN sudo chmod 777 /etc/nginx/nginx.conf
+# RUN sudo cat /usr/local/etc/nginx.conf >> /etc/nginx/nginx.conf
 
 ENV LANG C.UTF-8
 

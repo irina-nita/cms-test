@@ -64,23 +64,24 @@ http {
     # Force HTTPS.
     server {
         listen 80;
-        server_name ioi-server;
+        server_name 192.168.0.104;
         location / {
-            rewrite ^/(.*)$ https://ioi-server/$1;
+            rewrite ^/(.*)$ https://192.168.0.104/$1;
         }
     }
 
     server {
         listen 443 default_server;
-        server_name ioi-server;
+        server_name 192.168.0.104;
 
         # Have the nginx server be the HTTPS endpoint, authenticating
         # and decripting the connection, forwarding plain HTTP requests
         # upstream. To learn how to generate a self-signed certificate
         # see http://wiki.nginx.org/HttpSslModule.
         ssl on;
-        ssl_certificate /etc/nginx/ssl/server.crt;
-        ssl_certificate_key /etc/nginx/ssl/server.key;
+        ssl_certificate /etc/ssl/certs/nginx-self.crt;
+        ssl_certificate_key /etc/ssl/private/nginx-self.key;
+        ssl_dhparam /etc/ssl/certs/dhparam-nginx.pem;
 
         # Serve phppgadmin on a prefix. This assumes that you have the
         # phppgadmin and php7.2-fpm packages properly installed and

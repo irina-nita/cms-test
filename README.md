@@ -8,7 +8,7 @@ services:
 Build and run:
 ```shellsession
 foo@cms-test$ cd cms-dev/
-foo@cms-dev$ docker compose -f docker-compose.yml up
+foo@cms-dev$ docker compose -f docker-compose.yml up --build
 ```
 _(This should show the logs for the database)_
 
@@ -25,18 +25,16 @@ cmsuser@~/cms$ sudo apt install vim -y
 cmsuser@~/cms$ tmux
 ```
 
-Copy `config/cms.conf.docker.sample` to `/usr/local/etc/cms.conf` to set the right host and port to connect to the database (`db:5432`). The user is set to cmsuser:cmsuser.
+Config file used is `config/cms.conf.docker.sample` to set the right host and port to connect to the database (`db:5432`). The user is set to cmsuser:cmsuser.
 
-```shellsession
-cmsuser@~/cms$ cat ~/cms/config/cms.conf.docker.sample > /usr/local/etc/cms.conf
-```
-
-You can either connect to postgres:
+You can connect as postgres, using:
 ```shellsession
 cmsuser@~/cms$ psql -h db -p 5432 -U postgres
 postgres#
+postgres# logout
+cmsuser@~/cms$
 ```
-Or run as cmsuser using psql.
+Or using psql:
 _______
 Run the following commands to create a new user & database:
 
@@ -52,9 +50,6 @@ cmsuser@~/cms$ psql  -h db -p 5432 --username=postgres --dbname=cmsdb --command=
 ```
 ______
 
-```shellsession
-postgres# logout
-```
 Create the database schema for CMS:
 ```shellsession
 cmsuser@~/cms$ cmsInitDB
@@ -63,12 +58,20 @@ Create your admin account:
 ```shellsession
 cmsuser@~/cms$ cmsAddAdmin your_username -p your_password
 ```
-Finally, start web server:
+Start web server for admin:
 ```shellsession
-cmsuser@~/cms$ cmsLogService
+cmsuser@~/cms$ cmsAdminWebServer
 ```
-________
+In your web browser, navigate to [http://localhost:8889](http://localhost:8889) and enter your admin credentials.
 
-In your web browser, navigate to [localhost:8889]() and enter your admin credentials.
+Start all services:
+```shellsession
+cmsuser@~/cms$ cmsResourceService -a
+```
+[More info about resources](https://cms.readthedocs.io/en/latest/Running%20CMS.html)
 
-### Done! 🥳
+After configuring a contest, you can manually add a user by using the web interface.
+
+They can log in with their credentials at:
+[http://localhost:8888](http://localhost:8888).
+

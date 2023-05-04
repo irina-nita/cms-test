@@ -16,7 +16,22 @@ services:
       context: .
       dockerfile: ./Dockerfile
     ports:
-      - 8889:8889 # Will be needed to expose web server
+      - 8889:8889 # Will be needed to expose web server for admin
+      - 8888:8888 # Will be needed to expose web server for contests
+      - 8890:8890 # RankingWebServers
+      - 29000:29000
+      - 28000:28000
+      - 28500:28500
+      - 22000:22000
+      - 25000:25000
+      - 26000:26000
+      - 26001:26001
+      - 26002:26002
+      - 21000:21000
+      - 21100:21100
+      - 28600:28600
+      - 25123:25123
+      - 27501:27501
     depends_on:
       - "db"
     environment:
