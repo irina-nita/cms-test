@@ -40,7 +40,7 @@ Run the following commands to create a new user & database:
 _(if you don't want to modify cms.conf, let password be cmsuser)_
 ```shellsession
 cmsuser@~/cms$ createuser -h db -p 5432 --username=postgres --pwprompt cmsuser
-createdb -h db -p 5432 --username=postgres --owner=cmsuser cmsdb
+cmsuser@~/cms$ createdb -h db -p 5432 --username=postgres --owner=cmsuser cmsdb
 ```
 Grant permissions to user:
 ```shellsession
