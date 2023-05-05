@@ -57,11 +57,6 @@ Create your admin account:
 ```shellsession
 cmsuser@~/cms$ cmsAddAdmin your_username -p your_password
 ```
-Start web server for admin:
-```shellsession
-cmsuser@~/cms$ cmsAdminWebServer
-```
-In your web browser, navigate to [http://localhost:8889](http://localhost:8889) and enter your admin credentials.
 
 To see logs of all the services running:
 ```shellsession
@@ -73,6 +68,8 @@ Start all services:
 cmsuser@~/cms$ cmsResourceService -a
 ```
 [More info about resources](https://cms.readthedocs.io/en/latest/Running%20CMS.html)
+
+In your web browser, navigate to [http://localhost:8889](http://localhost:8889) and enter your admin credentials.
 
 After configuring a contest, you can manually add a user by using the web interface.
 
