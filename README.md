@@ -65,7 +65,7 @@ In your web browser, navigate to [http://localhost:8889](http://localhost:8889) 
 
 To see logs of all the services running:
 ```shellsession
-cmsuser@~/cms$ cmsLogService -a
+cmsuser@~/cms$ cmsLogService 0
 ```
 
 Start all services:
