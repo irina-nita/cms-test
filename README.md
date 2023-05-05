@@ -1,7 +1,7 @@
 # [`cms`](https://github.com/cms-dev/cms) dockerized
 
 ## Setting up
--------------------
+
 services:
 `db` and `cms_dev`.
 
@@ -78,7 +78,6 @@ They can log in with their credentials at:
 
 
 ## Contest Filesystem
-_____________
 
 I cloned an example for the italian import format (in `con_test-master`). The loader was pre-installed in cms.
 To see more about configuration of a contest for this filesystem, see the [doc](https://cms.readthedocs.io/en/latest/External%20contest%20formats.html#italian-import-format).
