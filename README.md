@@ -25,7 +25,7 @@ cmsuser@~/cms$ ./isolate-check-environment
 ```
 ______
 
-The first 4 tests are enough to pass for isolate to work properly (to use --cg - [See documentation][https://www.ucw.cz/moe/isolate.1.html])
+The first 4 tests are enough to pass for isolate to work properly (to use --cg - [See documentation](https://www.ucw.cz/moe/isolate.1.html)
 
 If they don't pass, you should set the kernel parameters from `cmdline.txt` on your host machine.
 You can't set them with sysctl. Edit `/etc/default/grub` by adding the line from `cmdline.txt`.
